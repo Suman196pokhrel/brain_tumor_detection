@@ -10,7 +10,7 @@ load_dotenv()  # Loading the environment Variables
 
 class CustomConnector:
 
-	def __init__(self, host_name=os.getenv("HOST"), user_name=os.getenv("USER"), password=os.getenv("PASSWORD"), database_name="world"):
+	def __init__(self, host_name=os.getenv("HOST"), user_name=os.getenv("USER"), password=os.getenv("PASSWORD"), database_name="btd"):
 
 		self.connection = mysql.connector.connect(host=host_name, user=user_name, passwd=password, database=database_name)
 		self.myCursor = self.connection.cursor()
