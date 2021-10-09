@@ -19,6 +19,11 @@ class CrudOps:
           self.obj.connection.commit()
           print("row added")
 
+     def update_row(self,table_name,changes,row_id):
+          for change in changes:
+               self.obj.myCursor.execute(f"UPDATE {table_name} SET {change} = {changes[change]} WHERE CustomerID = 1;")
+          self.obj.connection.commit()
+
      def delete_row(self,table_name,row_id):
           self.obj.myCursor.execute(f"DELETE FROM {table_name} WHERE id={row_id};")
           self.obj.connection.commit()
@@ -49,6 +54,16 @@ if __name__ == "__main__":
      # obj2.add_row()
      # obj2.delete_table('patient')
      # obj2.clear_table('patient')
-     obj2.delete_row(table_name='patient',row_id=2)
+     # obj2.delete_row(table_name='patient',row_id=2)
+
+     obj2.update_row(
+          table_name='patient',
+          changes={
+          "first_name":"laxmi",
+          "age":"23",
+          "gender":"F"
+                    },
+          row_id=2
+          )
 
      obj2.close_connection()
