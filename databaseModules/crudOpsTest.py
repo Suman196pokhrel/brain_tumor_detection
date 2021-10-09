@@ -14,8 +14,8 @@ class CrudOps:
           self.obj.myCursor.execute(PATIENT)
           print("table created")
      
-     def add_row(self):
-          self.obj.myCursor.execute(f"INSERT INTO patient (first_name,last_name,age,gender) VALUES ('Suman', 'pokhrel',22,'M');")
+     def add_row(self,table_name):
+          self.obj.myCursor.execute(f"INSERT INTO {table_name} (first_name,last_name,age,gender) VALUES ('Suman', 'pokhrel',22,'M');")
           self.obj.connection.commit()
           print("row added")
 
@@ -51,10 +51,10 @@ class CrudOps:
 if __name__ == "__main__":
      obj2  = CrudOps()
      # obj2.create_table()
-     # obj2.add_row()
-     # obj2.add_row()
-     # obj2.add_row()
-     # obj2.add_row()
+     # obj2.add_row(table_name='table_name')
+     # obj2.add_row(table_name='table_name')
+     # obj2.add_row(table_name='table_name')
+     # obj2.add_row(table_name='table_name')
      # obj2.delete_table('patient')
      # obj2.clear_table('patient')
      # obj2.delete_row(table_name='patient',row_id=2)
