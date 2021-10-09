@@ -21,8 +21,9 @@ class CrudOps:
 
      def update_row(self,table_name,changes,row_id):
           for change in changes:
-               self.obj.myCursor.execute(f"UPDATE {table_name} SET {change} = {changes[change]} WHERE CustomerID = 1;")
+               self.obj.myCursor.execute(f"UPDATE {table_name} SET {change} = {changes[change]} WHERE CustomerID = {row_id};")
           self.obj.connection.commit()
+          print(f"{row_id} is updated")
 
      def delete_row(self,table_name,row_id):
           self.obj.myCursor.execute(f"DELETE FROM {table_name} WHERE id={row_id};")
