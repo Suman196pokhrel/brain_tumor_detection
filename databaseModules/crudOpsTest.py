@@ -44,8 +44,11 @@ if __name__ == "__main__":
      obj2  = CrudOps()
      # obj2.create_table()
      # obj2.add_row()
+     # obj2.add_row()
+     # obj2.add_row()
+     # obj2.add_row()
      # obj2.delete_table('patient')
      # obj2.clear_table('patient')
-     # obj2.delete_row()
+     obj2.delete_row(table_name='patient',row_id=2)
 
      obj2.close_connection()
