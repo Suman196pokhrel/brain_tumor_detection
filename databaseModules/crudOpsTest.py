@@ -23,9 +23,6 @@ class CrudOps:
           for item in changes.items():
                print(type(item[0]))
                self.obj.myCursor.execute(f"UPDATE {table_name} SET {item[0]} = '{item[1]}' WHERE id = {row_id};")
-               
-          
-          # self.obj.myCursor.execute(f"UPDATE patient SET first_name = 'laxmi' WHERE id = 3;")
 
           self.obj.connection.commit()
           print(f"{row_id} is updated")
