@@ -20,8 +20,13 @@ class CrudOps:
           print("row added")
 
      def update_row(self,table_name,changes,row_id):
-          for change in changes:
-               self.obj.myCursor.execute(f"UPDATE {table_name} SET {change} = {changes[change]} WHERE CustomerID = {row_id};")
+          for item in changes.items():
+               print(type(item[0]))
+               self.obj.myCursor.execute(f"UPDATE {table_name} SET {item[0]} = '{item[1]}' WHERE id = {row_id};")
+               
+          
+          # self.obj.myCursor.execute(f"UPDATE patient SET first_name = 'laxmi' WHERE id = 3;")
+
           self.obj.connection.commit()
           print(f"{row_id} is updated")
 
@@ -57,14 +62,14 @@ if __name__ == "__main__":
      # obj2.clear_table('patient')
      # obj2.delete_row(table_name='patient',row_id=2)
 
-     obj2.update_row(
-          table_name='patient',
-          changes={
-          "first_name":"laxmi",
-          "age":"23",
-          "gender":"F"
-                    },
-          row_id=2
-          )
+     # obj2.update_row(
+     #      table_name='patient',
+     #      changes={
+     #      "first_name":"abhey",
+     #      "age":27,
+     #      "gender":"M"
+     #                },
+     #      row_id=7
+     #      )
 
      obj2.close_connection()
