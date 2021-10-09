@@ -19,12 +19,24 @@ class CrudOps:
           self.obj.connection.commit()
           print("row added")
 
+     def delete_row(self,table_name,row_id):
+          self.obj.myCursor.execute(f"DELETE FROM {table_name} WHERE id={row_id};")
+          self.obj.connection.commit()
+          print(f"{row_id} row Deleted")
+
+     def clear_table(self,table_name):
+          self.obj.myCursor.execute(f"DELETE FROM {table_name};")
+          self.obj.connection.commit()
+          print(f"{table_name} table cleared")
+
      def delete_table(self,table_name):
           self.obj.myCursor.execute(f"DROP TABLE {table_name};")
           self.obj.connection.commit()
+          print("table deleted")
 
      def close_connection(self):
           self.obj.exit_database()
+          print("connection closed")
 
 
 
@@ -32,7 +44,8 @@ if __name__ == "__main__":
      obj2  = CrudOps()
      # obj2.create_table()
      # obj2.add_row()
-     obj2.delete_table('patient')
-
+     # obj2.delete_table('patient')
+     # obj2.clear_table('patient')
+     # obj2.delete_row()
 
      obj2.close_connection()
