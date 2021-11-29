@@ -36,6 +36,6 @@ class DataGenerator:
 
 
 if __name__ == "__main__":
-    DataGenerator(src_img=r"E:\Final_year_project\btd_final_project\mlModule\testData\test1.jpeg",
+    DataGenerator(src_img=r"E:\Final_year_project\btd_final_project\mlModule\testData\fifty_test_3.jpg",
                          src_dir=r"E:\Final_year_project\btd_final_project\mlModule\augumentedImages",
                          no_of_images=10)

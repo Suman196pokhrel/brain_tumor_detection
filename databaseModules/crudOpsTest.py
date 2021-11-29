@@ -15,7 +15,7 @@ class CrudOps:
           print("table created")
      
      def add_row(self,table_name):
-          self.obj.myCursor.execute(f"INSERT INTO {table_name} (first_name,last_name,age,gender) VALUES ('Final', 'pokhrel',42,'F');")
+          self.obj.myCursor.execute(f"INSERT INTO {table_name} (first_name,last_name,age,gender) VALUES ('Evaluation2222', 'o4',42,'F');")
           self.obj.connection.commit()
           print("row added")
 
@@ -46,27 +46,15 @@ class CrudOps:
           self.obj.exit_database()
           print("connection closed")
 
-
+     def load_all_data(self):
+          self.obj.myCursor.execute(f"SELECT * FROM Patient")
+          print(self.obj.myCursor.fetchall())
 
 if __name__ == "__main__":
      obj2  = CrudOps()
      # obj2.create_table()
-     obj2.add_row(table_name='Patient')
-     # obj2.add_row(table_name='table_name')
-     # obj2.add_row(table_name='table_name')
-     # obj2.add_row(table_name='table_name')
-     # obj2.delete_table('patient')
-     # obj2.clear_table('patient')
-     # obj2.delete_row(table_name='patient',row_id=2)
+     # obj2.add_row(table_name='Patient')
 
-     # obj2.update_row(
-     #      table_name='patient',
-     #      changes={
-     #      "first_name":"abhey",
-     #      "age":27,
-     #      "gender":"M"
-     #                },
-     #      row_id=7
-     #      )
+     obj2.load_all_data()
 
      obj2.close_connection()
