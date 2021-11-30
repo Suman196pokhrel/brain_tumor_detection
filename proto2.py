@@ -4,6 +4,8 @@ from sys import flags
 from typing import Collection
 from PyQt5 import QtCore, QtGui, QtWidgets
 from databaseModules import connector_01
+from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtGui import QFont
 
 
 class Ui_MainWindow(object):
@@ -159,6 +161,12 @@ class Ui_MainWindow(object):
                 self.lineEdit_2.setStyleSheet("border:1px solid grey;")
                 self.lineEdit_2.setObjectName("lineEdit_2")
                 self.gridLayout.addWidget(self.lineEdit_2, 0, 0, 1, 1)
+
+
+               
+
+
+
                 self.comboBox = QtWidgets.QComboBox(self.frame_9)
                 self.comboBox.setMinimumSize(QtCore.QSize(200, 33))
                 self.comboBox.setMaximumSize(QtCore.QSize(16777215, 70))
@@ -513,19 +521,19 @@ class Ui_MainWindow(object):
                 self.label_4.setText(_translate(
                         "MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-weight:600;\">Patient Details</span></p></body></html>"))
                 self.lineEdit_2.setPlaceholderText(
-                        _translate("MainWindow", "First name  . . . "))
+                        _translate("MainWindow", "First name"))
                 self.comboBox.setCurrentText(_translate("MainWindow", "Male"))
                 self.comboBox.setItemText(0, _translate("MainWindow", "Male"))
                 self.comboBox.setItemText(1, _translate("MainWindow", "Female"))
                 self.comboBox.setItemText(2, _translate("MainWindow", "Others"))
                 self.lineEdit_4.setPlaceholderText(
-                        _translate("MainWindow", "Last name  . . . "))
+                        _translate("MainWindow", "Last name"))
                 self.lineEdit_5.setPlaceholderText(
-                        _translate("MainWindow", "Age . . . "))
+                        _translate("MainWindow", "Age"))
                 self.lineEdit_6.setPlaceholderText(
-                        _translate("MainWindow", "Contact number  . . . "))
+                        _translate("MainWindow", "Contact number"))
                 self.lineEdit_7.setPlaceholderText(
-                        _translate("MainWindow", "Address  . . . "))
+                        _translate("MainWindow", "Address"))
                 self.radioButton.setText(_translate(
                         "MainWindow", "Add patients data to Dataset"))
                 self.pushButton_2.setText(_translate("MainWindow", "Start Detection"))
@@ -563,6 +571,13 @@ class Ui_MainWindow(object):
                 self.menuhelp.setTitle(_translate("MainWindow", "help"))
                 self.menuAbout.setTitle(_translate("MainWindow", "About"))
 
+
+                # Setting up the font sizes 
+                self.lineEdit_2.setFont(QFont( "Timers" , 12 ,  QFont.Bold) )
+                self.lineEdit_4.setFont(QFont( "Timers" , 12 ,  QFont.Bold) )
+                self.lineEdit_5.setFont(QFont( "Timers" , 12 ,  QFont.Bold) )
+                self.lineEdit_6.setFont(QFont( "Timers" , 12 ,  QFont.Bold) )
+                self.lineEdit_7.setFont(QFont( "Timers" , 12 ,  QFont.Bold) )
 
 
                 # Adding event Listers on button 
@@ -647,8 +662,6 @@ class Ui_MainWindow(object):
         def add_data(self):
                 connection1 = connector_01.CustomConnector()
 
-                id = self.lineEdit_3.text()
-
                 fname = self.lineEdit_2.text()
                 lname = self.lineEdit_4.text()
                 age = self.lineEdit_5.text()
@@ -662,8 +675,10 @@ class Ui_MainWindow(object):
                 try:
                        connection1.execute(f"INSERT INTO btd.patient (first_name,last_name,age,gender,contact_num,address) VALUES ('{fname}','{lname}',{age},'{gender}','{contact_num}','{address}')")
                        connection1.connection.commit()
+                       self.messageBox("add")
                 except Exception as e:
                         print(e)
+                        self.messageBox("empty")
 
 
                 print("Data Added")
@@ -704,8 +719,9 @@ class Ui_MainWindow(object):
 
                         connection1.connection.commit()
 
-
-                        print("Data Updated")
+                        self.messageBox("update")
+                else:
+                        self.messageBox("empty")
 
                 self.load_table_data()
                 self.clear_lineEdits()
@@ -724,15 +740,43 @@ class Ui_MainWindow(object):
 
 
                         print("Data Deleted")
-
+                        self.load_table_data()
+                        self.clear_lineEdits()
+                        
+                        self.messageBox("delete")
+                else:
+                        self.messageBox("empty")
                 
                 
-                self.load_table_data()
-                self.clear_lineEdits()
      
-
-
                 connection1.exit_database()
+
+                
+
+        def messageBox(self,text):
+                msg = QtWidgets.QMessageBox()
+                msg.setWindowTitle("Brain Tumor Detection")
+                msg.setStyleSheet(r"QLabel{width: 140px;}");
+
+                if(text=='delete'):
+                        msg.setText(f"Row has been deleted sucessfully")
+                        msg.setIcon(QMessageBox.Information)
+                        msg.exec_()
+                elif(text=='add'):
+                        msg.setText(f"Patient Details has been submitted sucessfully")
+                        msg.setIcon(QMessageBox.Information)
+                        msg.exec_()
+                elif(text=='update'):
+                        msg.setText(f"Row has been updated sucessfully")
+                        msg.setIcon(QMessageBox.Information)
+                        msg.exec_()
+                elif(text=='empty'):
+                        msg.setText(f"Cannto submit empty form")
+                        msg.setIcon(QMessageBox.Critical)
+                        msg.exec_()
+                
+
+                
 
 
 
