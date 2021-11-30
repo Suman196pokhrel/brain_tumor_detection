@@ -305,9 +305,9 @@ class Ui_MainWindow(object):
                 self.tableWidget.setColumnCount(0)
                 self.tableWidget.setRowCount(0)
                 self.verticalLayout_11.addWidget(self.tableWidget)
-                self.tableWidget.setColumnCount(5)
+                self.tableWidget.setColumnCount(7)
                 # self.tableWidget.setVerticalHeaderLabels([''])
-                self.tableWidget.setHorizontalHeaderLabels(['ID',"First name","Last name","Age","Gender"])
+                self.tableWidget.setHorizontalHeaderLabels(['ID',"First name","Last name","Age","Gender","Contact Number","Address"])
                 
                 # Making column Width Max width 
                 header = self.tableWidget.horizontalHeader()       
@@ -316,6 +316,8 @@ class Ui_MainWindow(object):
                 header.setSectionResizeMode(2, QtWidgets.QHeaderView.Stretch)
                 header.setSectionResizeMode(3, QtWidgets.QHeaderView.Stretch)
                 header.setSectionResizeMode(4, QtWidgets.QHeaderView.Stretch)
+                header.setSectionResizeMode(5, QtWidgets.QHeaderView.Stretch)
+                header.setSectionResizeMode(6, QtWidgets.QHeaderView.Stretch)
 
 
 
@@ -567,7 +569,14 @@ class Ui_MainWindow(object):
                 # For search id event 
                 self.lineEdit_3.textChanged.connect(self.on_id_search)
 
+                # Update feature
+                self.pushButton_3.clicked.connect(self.update_data)
+
+                # Deleting row
+                self.pushButton_4.clicked.connect(self.delete_data)
+
         def load_table_data(self):  
+                self.tableWidget.setRowCount(0)
 
                 connection1 = connector_01.CustomConnector()
 
@@ -576,7 +585,7 @@ class Ui_MainWindow(object):
 
 
                 self.tableWidget.verticalHeader().setVisible(False)
-
+                print(data)
                 for items in data:
                         # Creats empty row 
                         rowPosition = self.tableWidget.rowCount()
@@ -587,16 +596,84 @@ class Ui_MainWindow(object):
                         self.tableWidget.setItem(rowPosition, 2, QtWidgets.QTableWidgetItem(f"{items[2]}"))
                         self.tableWidget.setItem(rowPosition, 3, QtWidgets.QTableWidgetItem(f"{items[3]}"))
                         self.tableWidget.setItem(rowPosition, 4, QtWidgets.QTableWidgetItem(f"{items[4]}"))
+                        self.tableWidget.setItem(rowPosition, 5, QtWidgets.QTableWidgetItem(f"{items[5]}"))
+                        self.tableWidget.setItem(rowPosition, 6, QtWidgets.QTableWidgetItem(f"{items[6]}"))
 
 
                 connection1.exit_database()
 
         def on_id_search(self):
-                print("value changed")
-                
-                
-                
+                connection1 = connector_01.CustomConnector()
+                id = self.lineEdit_3.text()
+                if(id != '' and id != " "):
+                        connection1.execute(f'SELECT * FROM btd.patient WHERE id={id}')
+                        data = connection1.myCursor.fetchall()
 
+
+                        print(data)
+                        self.lineEdit_8.setText(f"{data[0][1]}")
+                        self.lineEdit_9.setText(f"{data[0][2]}")
+                        self.lineEdit_10.setText(f"{data[0][3]}")
+                        if(data[0][4]=='M'):
+                                self.comboBox_2.setCurrentIndex(0)
+                        else:
+                                self.comboBox_2.setCurrentIndex(1)
+                        
+
+
+                                
+
+
+                connection1.exit_database()
+                
+        def update_data(self):
+                connection1 = connector_01.CustomConnector()
+
+                id = self.lineEdit_3.text()
+
+                fname = self.lineEdit_8.text()
+                lname = self.lineEdit_9.text()
+                age = self.lineEdit_10.text()
+                gender = self.comboBox_2.currentIndex()
+                if(self.comboBox_2.currentIndex() == 0):
+                        gender = 'M'
+                else:
+                        gender = 'F'
+
+                if(id != '' and id != " "):
+                        connection1.execute(f"UPDATE btd.patient SET first_name = '{fname}',last_name = '{lname}',age = {age},gender = '{gender}' WHERE id={id}")
+                        # data = connection1.myCursor.fetchall()
+
+                        connection1.connection.commit()
+
+
+                        print("Data Updated")
+
+                self.load_table_data()
+     
+
+
+                connection1.exit_database()
+                
+        def delete_data(self):
+                connection1 = connector_01.CustomConnector()
+
+                id = self.lineEdit_3.text()
+
+                if(id != '' and id != " "):
+                        connection1.execute(f"DELETE FROM btd.patient WHERE id={id}")
+                        connection1.connection.commit()
+
+
+                        print("Data Deleted")
+
+                
+                
+                self.load_table_data()
+     
+
+
+                connection1.exit_database()
 
 
 
