@@ -4,7 +4,7 @@ from sys import flags
 from typing import Collection
 from PyQt5 import QtCore, QtGui, QtWidgets
 from databaseModules import connector_01
-from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QHeaderView, QMessageBox , QTableWidgetItem
 from PyQt5.QtGui import QFont
 
 
@@ -318,6 +318,10 @@ class Ui_MainWindow(object):
                 # self.tableWidget.setVerticalHeaderLabels([''])
                 self.tableWidget.setHorizontalHeaderLabels(['ID',"First name","Last name","Age","Gender","Contact Number","Address"])
                 
+
+                # self.tableWidget.setItem(3, 5,QTableWidgetItem())
+                # self.tableWidget.item(3, 5).setBackground(QtGui.QColor(100,100,150))
+                
                 # Making column Width Max width 
                 header = self.tableWidget.horizontalHeader()       
                 header.setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
@@ -327,6 +331,7 @@ class Ui_MainWindow(object):
                 header.setSectionResizeMode(4, QtWidgets.QHeaderView.Stretch)
                 header.setSectionResizeMode(5, QtWidgets.QHeaderView.Stretch)
                 header.setSectionResizeMode(6, QtWidgets.QHeaderView.Stretch)
+                
 
 
 
@@ -618,6 +623,14 @@ class Ui_MainWindow(object):
                         self.tableWidget.setItem(rowPosition, 4, QtWidgets.QTableWidgetItem(f"{items[4]}"))
                         self.tableWidget.setItem(rowPosition, 5, QtWidgets.QTableWidgetItem(f"{items[5]}"))
                         self.tableWidget.setItem(rowPosition, 6, QtWidgets.QTableWidgetItem(f"{items[6]}"))
+
+                        self.tableWidget.item(rowPosition,0).setBackground(QtGui.QColor(185, 255, 187))
+                        self.tableWidget.item(rowPosition,1).setBackground(QtGui.QColor(185, 255, 187))
+                        self.tableWidget.item(rowPosition,2).setBackground(QtGui.QColor(185, 255, 187))
+                        self.tableWidget.item(rowPosition,3).setBackground(QtGui.QColor(185, 255, 187))
+                        self.tableWidget.item(rowPosition,4).setBackground(QtGui.QColor(185, 255, 187))
+                        self.tableWidget.item(rowPosition,5).setBackground(QtGui.QColor(185, 255, 187))
+                        self.tableWidget.item(rowPosition,6).setBackground(QtGui.QColor(185, 255, 187))
 
 
                 connection1.exit_database()
