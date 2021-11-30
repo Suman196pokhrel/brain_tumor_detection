@@ -577,6 +577,9 @@ class Ui_MainWindow(object):
                 # Deleting row
                 self.pushButton_4.clicked.connect(self.delete_data)
 
+                # Add data in table
+                self.pushButton_2.clicked.connect(self.add_data)
+
         def load_table_data(self):  
                 self.tableWidget.setRowCount(0)
 
@@ -640,7 +643,45 @@ class Ui_MainWindow(object):
 
 
                 connection1.exit_database()
+
+        def add_data(self):
+                connection1 = connector_01.CustomConnector()
+
+                id = self.lineEdit_3.text()
+
+                fname = self.lineEdit_2.text()
+                lname = self.lineEdit_4.text()
+                age = self.lineEdit_5.text()
+                contact_num = self.lineEdit_6.text()
+                address = self.lineEdit_7.text()
+                if(self.comboBox.currentIndex() == 0):
+                        gender = 'M'
+                else:
+                        gender = 'F'
                 
+                try:
+                       connection1.execute(f"INSERT INTO btd.patient (first_name,last_name,age,gender,contact_num,address) VALUES ('{fname}','{lname}',{age},'{gender}','{contact_num}','{address}')")
+                       connection1.connection.commit()
+                except Exception as e:
+                        print(e)
+
+
+                print("Data Added")
+
+               
+                self.lineEdit_2.clear()
+                self.lineEdit_4.clear()
+                self.lineEdit_5.clear()
+                self.lineEdit_6.clear()
+                self.lineEdit_7.clear()
+                self.comboBox.setCurrentIndex(0)
+                
+                
+                self.load_table_data()
+
+
+                connection1.exit_database()
+
         def update_data(self):
                 connection1 = connector_01.CustomConnector()
 
