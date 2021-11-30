@@ -1,5 +1,6 @@
 
 
+from sys import flags
 from typing import Collection
 from PyQt5 import QtCore, QtGui, QtWidgets
 from databaseModules import connector_01
@@ -413,6 +414,7 @@ class Ui_MainWindow(object):
                 self.comboBox_2.addItem("")
                 self.comboBox_2.addItem("")
                 self.gridLayout_2.addWidget(self.comboBox_2, 0, 2, 1, 1)
+                self.comboBox_2.setEnabled(False)
                 self.lineEdit_10 = QtWidgets.QLineEdit(self.frame_21)
                 self.lineEdit_10.setMinimumSize(QtCore.QSize(180, 33))
                 self.lineEdit_10.setMaximumSize(QtCore.QSize(16777215, 70))
@@ -602,23 +604,36 @@ class Ui_MainWindow(object):
 
                 connection1.exit_database()
 
+        def clear_lineEdits(self):
+                self.lineEdit_8.clear()
+                self.lineEdit_9.clear()
+                self.lineEdit_10.clear()
+                self.lineEdit_11.clear()
+                self.lineEdit_12.clear()
+                self.comboBox_2.setEnabled(False)
+
         def on_id_search(self):
                 connection1 = connector_01.CustomConnector()
                 id = self.lineEdit_3.text()
-                if(id != '' and id != " "):
-                        connection1.execute(f'SELECT * FROM btd.patient WHERE id={id}')
-                        data = connection1.myCursor.fetchall()
+                try:
+                        if(id != '' and id != " " and int(id)):
+                                connection1.execute(f'SELECT * FROM btd.patient WHERE id={id}')
+                                data = connection1.myCursor.fetchall()
 
 
-                        print(data)
-                        self.lineEdit_8.setText(f"{data[0][1]}")
-                        self.lineEdit_9.setText(f"{data[0][2]}")
-                        self.lineEdit_10.setText(f"{data[0][3]}")
-                        if(data[0][4]=='M'):
-                                self.comboBox_2.setCurrentIndex(0)
-                        else:
-                                self.comboBox_2.setCurrentIndex(1)
-                        
+                                print(data)
+                                self.lineEdit_8.setText(f"{data[0][1]}")
+                                self.lineEdit_9.setText(f"{data[0][2]}")
+                                self.lineEdit_10.setText(f"{data[0][3]}")
+                                self.lineEdit_11.setText(f"{data[0][5]}")
+                                self.lineEdit_12.setText(f"{data[0][6]}")
+                                self.comboBox_2.setEnabled(True)
+                                if(data[0][4]=='M'):
+                                        self.comboBox_2.setCurrentIndex(0)
+                                else:
+                                        self.comboBox_2.setCurrentIndex(1)
+                except Exception as e:
+                        print(e)        
 
 
                                 
@@ -634,14 +649,16 @@ class Ui_MainWindow(object):
                 fname = self.lineEdit_8.text()
                 lname = self.lineEdit_9.text()
                 age = self.lineEdit_10.text()
-                gender = self.comboBox_2.currentIndex()
+                self.comboBox_2.setEnabled(True)
+                contact_num = self.lineEdit_11.text()
+                address = self.lineEdit_12.text()
                 if(self.comboBox_2.currentIndex() == 0):
                         gender = 'M'
                 else:
                         gender = 'F'
 
                 if(id != '' and id != " "):
-                        connection1.execute(f"UPDATE btd.patient SET first_name = '{fname}',last_name = '{lname}',age = {age},gender = '{gender}' WHERE id={id}")
+                        connection1.execute(f"UPDATE btd.patient SET first_name = '{fname}',last_name = '{lname}',age = {age},gender = '{gender}',contact_num = '{contact_num}',address = '{address}' WHERE id={id}")
                         # data = connection1.myCursor.fetchall()
 
                         connection1.connection.commit()
@@ -650,7 +667,7 @@ class Ui_MainWindow(object):
                         print("Data Updated")
 
                 self.load_table_data()
-     
+                self.clear_lineEdits()
 
 
                 connection1.exit_database()
@@ -670,6 +687,7 @@ class Ui_MainWindow(object):
                 
                 
                 self.load_table_data()
+                self.clear_lineEdits()
      
 
 
