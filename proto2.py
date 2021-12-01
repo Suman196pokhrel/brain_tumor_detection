@@ -4,8 +4,8 @@ from sys import flags
 from typing import Collection
 from PyQt5 import QtCore, QtGui, QtWidgets
 from databaseModules import connector_01
-from PyQt5.QtWidgets import QHeaderView, QMessageBox , QTableWidgetItem
-from PyQt5.QtGui import QFont
+from PyQt5.QtWidgets import QFileDialog, QHeaderView, QMessageBox , QTableWidgetItem
+from PyQt5.QtGui import QCursor, QFont, QPixmap
 
 
 class Ui_MainWindow(object):
@@ -109,6 +109,8 @@ class Ui_MainWindow(object):
                                                 "border-radius:5px;")
                 self.lineEdit.setObjectName("lineEdit")
                 self.horizontalLayout_2.addWidget(self.lineEdit)
+
+
                 self.pushButton = QtWidgets.QPushButton(self.frame_7)
                 self.pushButton.setMinimumSize(QtCore.QSize(40, 25))
                 self.pushButton.setMaximumSize(QtCore.QSize(40, 40))
@@ -117,6 +119,10 @@ class Ui_MainWindow(object):
                 self.pushButton.setIconSize(QtCore.QSize(30, 30))
                 self.pushButton.setObjectName("pushButton")
                 self.horizontalLayout_2.addWidget(self.pushButton)
+                self.pushButton.setIcon(QtGui.QIcon(r'E:\Final_year_project\btd_final_project\uIModule\fileicon.png'))
+                self.pushButton.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
+
+
                 self.verticalLayout_3.addWidget(self.frame_7)
                 self.horizontalLayout.addWidget(self.frame_3)
                 self.frame_4 = QtWidgets.QFrame(self.frame)
@@ -224,6 +230,7 @@ class Ui_MainWindow(object):
                 self.pushButton_2.setStyleSheet("background-color: rgb(19, 141, 255);\n"
                                                 "color: rgb(255, 255, 255);")
                 self.pushButton_2.setObjectName("pushButton_2")
+                self.pushButton_2.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
                 self.horizontalLayout_5.addWidget(self.pushButton_2)
                 self.verticalLayout_4.addWidget(self.frame_10)
                 self.horizontalLayout.addWidget(self.frame_4)
@@ -600,6 +607,9 @@ class Ui_MainWindow(object):
                 # Add data in table
                 self.pushButton_2.clicked.connect(self.add_data)
 
+                # IMage Selector
+                self.pushButton.clicked.connect(self.open_file_selector)
+
         def load_table_data(self):  
                 self.tableWidget.setRowCount(0)
 
@@ -764,6 +774,15 @@ class Ui_MainWindow(object):
      
                 connection1.exit_database()
 
+        def open_file_selector(self):
+                
+                fname = QFileDialog.getOpenFileName(self.centralwidget,'Open File', 'c\\','Image files (*.png *.jpg *.jpeg)')
+                imgPath = fname[0]
+                print(imgPath)
+                self.lineEdit.setText(imgPath)
+
+                pixmap = QPixmap(f"{imgPath}")
+                self.label_2.setPixmap(pixmap)
                 
 
         def messageBox(self,text):
