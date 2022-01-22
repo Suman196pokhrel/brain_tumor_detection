@@ -1,5 +1,3 @@
-
-
 from sys import flags
 from typing import Collection
 from PyQt5 import QtCore, QtGui, QtWidgets
