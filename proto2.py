@@ -698,7 +698,7 @@ class Ui_MainWindow(object):
                         gender = 'F'
                 
                 try:
-                       connection1.execute(f"INSERT INTO btd.patient (first_name,last_name,age,gender,contact_num,address) VALUES ('{fname}','{lname}',{age},'{gender}','{contact_num}','{address}')")
+                       connection1.execute(f"INSERT INTO btd.patient (first_name,last_name,age,gender,contact_number,address) VALUES ('{fname}','{lname}',{age},'{gender}','{contact_num}','{address}')")
                        connection1.connection.commit()
                        self.messageBox("add")
                 except Exception as e:
@@ -739,7 +739,7 @@ class Ui_MainWindow(object):
                         gender = 'F'
 
                 if(id != '' and id != " "):
-                        connection1.execute(f"UPDATE btd.patient SET first_name = '{fname}',last_name = '{lname}',age = {age},gender = '{gender}',contact_num = '{contact_num}',address = '{address}' WHERE id={id}")
+                        connection1.execute(f"UPDATE btd.patient SET first_name = '{fname}',last_name = '{lname}',age = {age},gender = '{gender}',contact_number = '{contact_num}',address = '{address}' WHERE id={id}")
                         # data = connection1.myCursor.fetchall()
 
                         connection1.connection.commit()
