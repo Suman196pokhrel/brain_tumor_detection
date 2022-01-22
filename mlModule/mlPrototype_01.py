@@ -1,4 +1,7 @@
+
 from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
+
+
 
 
 class DataGenerator:
@@ -36,6 +39,6 @@ class DataGenerator:
 
 
 if __name__ == "__main__":
-    DataGenerator(src_img=r"E:\Final_year_project\btd_final_project\mlModule\testData\fifty_test_3.jpg",
-                         src_dir=r"E:\Final_year_project\btd_final_project\mlModule\augumentedImages",
+    DataGenerator(src_img=r"/mnt/sda2/Final_year_project/btd_final_project/mlModule/testData/test1.jpeg",
+                         src_dir=r"/mnt/sda2/Final_year_project/btd_final_project/mlModule/augumentedImages",
                          no_of_images=10)
