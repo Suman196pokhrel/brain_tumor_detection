@@ -608,6 +608,9 @@ class Ui_MainWindow(object):
                 # IMage Selector
                 self.pushButton.clicked.connect(self.open_file_selector)
 
+                # Clear lin-edit features
+                self.pushButton_5.clicked.connect(self.clear_lineEdits)
+
         def load_table_data(self):  
                 self.tableWidget.setRowCount(0)
 
@@ -649,6 +652,7 @@ class Ui_MainWindow(object):
                 self.lineEdit_10.clear()
                 self.lineEdit_11.clear()
                 self.lineEdit_12.clear()
+                self.lineEdit_3.clear()
                 self.comboBox_2.setEnabled(False)
 
         def on_id_search(self):
