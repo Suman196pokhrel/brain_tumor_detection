@@ -318,10 +318,10 @@ class Ui_MainWindow(object):
         self.tableWidget.setColumnCount(0)
         self.tableWidget.setRowCount(0)
         self.verticalLayout_11.addWidget(self.tableWidget)
-        self.tableWidget.setColumnCount(7)
+        self.tableWidget.setColumnCount(8)
         # self.tableWidget.setVerticalHeaderLabels([''])
         self.tableWidget.setHorizontalHeaderLabels(
-            ['ID', "First name", "Last name", "Age", "Gender", "Contact Number", "Address"])
+            ['ID', "First name", "Last name", "Age", "Gender", "Contact Number", "Address", "Image"])
 
         # self.tableWidget.setItem(3, 5,QTableWidgetItem())
         # self.tableWidget.item(3, 5).setBackground(QtGui.QColor(100,100,150))
@@ -335,6 +335,7 @@ class Ui_MainWindow(object):
         header.setSectionResizeMode(4, QtWidgets.QHeaderView.Stretch)
         header.setSectionResizeMode(5, QtWidgets.QHeaderView.Stretch)
         header.setSectionResizeMode(6, QtWidgets.QHeaderView.Stretch)
+        header.setSectionResizeMode(7, QtWidgets.QHeaderView.Stretch)
 
         self.verticalLayout_10.addWidget(self.frame_15)
         self.frame_16 = QtWidgets.QFrame(self.frame_14)
@@ -635,6 +636,8 @@ class Ui_MainWindow(object):
                 rowPosition, 5, QtWidgets.QTableWidgetItem(f"{items[5]}"))
             self.tableWidget.setItem(
                 rowPosition, 6, QtWidgets.QTableWidgetItem(f"{items[6]}"))
+            self.tableWidget.setItem(
+                rowPosition, 7, QtWidgets.QTableWidgetItem(f"{items[7]}"))
 
             self.tableWidget.item(rowPosition, 0).setBackground(
                 QtGui.QColor(185, 255, 187))
@@ -650,6 +653,10 @@ class Ui_MainWindow(object):
                 QtGui.QColor(185, 255, 187))
             self.tableWidget.item(rowPosition, 6).setBackground(
                 QtGui.QColor(185, 255, 187))
+            self.tableWidget.item(rowPosition, 7).setBackground(
+                QtGui.QColor(185, 255, 187))
+
+
 
         connection1.exit_database()
 
