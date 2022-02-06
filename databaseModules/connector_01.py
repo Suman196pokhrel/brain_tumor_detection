@@ -1,5 +1,4 @@
 # Imports
-from codecs import getencoder
 from dotenv import load_dotenv
 import os
 import mariadb

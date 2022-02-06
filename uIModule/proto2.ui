@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>860</width>
-    <height>575</height>
+    <height>578</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -51,7 +51,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <property name="styleSheet">
@@ -1292,7 +1292,7 @@ color: rgb(255, 255, 255);</string>
      <x>0</x>
      <y>0</y>
      <width>860</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -1324,7 +1324,7 @@ color: rgb(255, 255, 255);</string>
  <resources>
   <include location="resource_rc/resource.qrc"/>
   <include location="resource_rc/resource.qrc"/>
-  <include location="../resource_rc/resource.qrc"/>
+  <include location="resource_rc/resource.qrc"/>
  </resources>
  <connections/>
 </ui>
