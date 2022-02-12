@@ -2,7 +2,7 @@
 
 /btdEnv
 
-/cnn_models
+# cnn_models
 /My_CNN_model_1.sav
 
 /data

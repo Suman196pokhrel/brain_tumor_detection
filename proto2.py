@@ -1,13 +1,17 @@
 from sys import flags
-from tkinter import Image
-from typing import Collection
+# from tkinter import Image
+# from typing import Collection
 from PyQt5 import QtCore, QtGui, QtWidgets
 from databaseModules import connector_01
 from PyQt5.QtWidgets import QFileDialog, QHeaderView, QMessageBox, QTableWidgetItem
 from PyQt5.QtGui import QCursor, QFont, QPixmap
 
-import pickle
+
+# import pickle
 import numpy as np
+# import tensorflow as tf
+import cv2 
+# from PIL import Image
 
 
 
@@ -605,7 +609,7 @@ class Ui_MainWindow(object):
         self.pushButton_5.clicked.connect(self.clear_lineEdits)
 
         # Loading machine learning models
-        self.loaded_model = pickle.load(open(r'My_CNN_model_1.sav','rb'))
+        # self.loaded_model = tf.keras.models.load_model("./cnn_models/BrainTumorDetection_model_3.h5")
 
     def load_table_data(self):
         self.tableWidget.setRowCount(0)
@@ -837,15 +841,28 @@ class Ui_MainWindow(object):
             return 'No, Its not a tumor'
 
     def predict_final(self):
+        input_size = 64
         # if(selff.lineEdit.text == ""):
         #     selff.messageBox("empty")
         
-        if(self.lineEdit.text() != "" and not(self.areFieldsEmpty())):
-            self.add_data()
+        # if(self.lineEdit.text() != "" and not(self.areFieldsEmpty())):
+        #     self.add_data()
+        #     print(self.lineEdit.text)
 
-        else:
-            print("Something is messed up in the code")
-
+        # else:
+        #     print("Something is messed up in the code")
+        # self.add_data()
+        # print(self.lineEdit.text)
+        # print("Model loaded")
+        
+        # pred_data = []
+        # image_test = cv2.imread(self.lineEdit.text) 
+        # image_test = Image.fromarray(image_test, 'RGB')
+        # image_test = image_test.resize((input_size,input_size))
+        # pred_data.append(np.array(image_test))
+        # pred = np.asarray(pred_data)
+        # final_prediction  = self.loaded_model.predict(pred)
+        # print("Final prediciton =>> ", final_prediction)
 
 
 
