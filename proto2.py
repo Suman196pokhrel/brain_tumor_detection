@@ -9,9 +9,11 @@ from PyQt5.QtGui import QCursor, QFont, QPixmap
 
 # import pickle
 import numpy as np
-# import tensorflow as tf
-import cv2 
-# from PIL import Image
+import tensorflow as tf
+# import cv2 
+from skimage.transform import resize
+from PIL import Image
+import matplotlib.image as mpimg
 
 
 
@@ -600,7 +602,7 @@ class Ui_MainWindow(object):
         self.pushButton_4.clicked.connect(self.delete_data)
 
         # Add data in table
-        self.pushButton_2.clicked.connect(self.add_data)
+        self.pushButton_2.clicked.connect(self.predict_final)
 
         # IMage Selector
         self.pushButton.clicked.connect(self.open_file_selector)
@@ -609,7 +611,7 @@ class Ui_MainWindow(object):
         self.pushButton_5.clicked.connect(self.clear_lineEdits)
 
         # Loading machine learning models
-        # self.loaded_model = tf.keras.models.load_model("./cnn_models/BrainTumorDetection_model_3.h5")
+        self.loaded_model = tf.keras.models.load_model("./cnn_models/BrainTumorDetection_model_3.h5")
 
     def load_table_data(self):
         self.tableWidget.setRowCount(0)
@@ -724,13 +726,13 @@ class Ui_MainWindow(object):
 
         print("Data Added")
 
-        self.lineEdit_2.clear()
-        self.lineEdit_4.clear()
-        self.lineEdit_5.clear()
-        self.lineEdit_6.clear()
-        self.lineEdit_7.clear()
-        self.lineEdit.clear()
-        self.comboBox.setCurrentIndex(0)
+        # self.lineEdit_2.clear()
+        # self.lineEdit_4.clear()
+        # self.lineEdit_5.clear()
+        # self.lineEdit_6.clear()
+        # self.lineEdit_7.clear()
+        # self.lineEdit.clear()
+        # self.comboBox.setCurrentIndex(0)
 
         self.load_table_data()
 
@@ -851,18 +853,27 @@ class Ui_MainWindow(object):
 
         # else:
         #     print("Something is messed up in the code")
-        # self.add_data()
-        # print(self.lineEdit.text)
-        # print("Model loaded")
+        self.add_data()
+        temp_path = self.lineEdit.text()
+        print("TEMP pATH ==>>> ", temp_path)
+        print("Model loaded")
         
-        # pred_data = []
-        # image_test = cv2.imread(self.lineEdit.text) 
-        # image_test = Image.fromarray(image_test, 'RGB')
-        # image_test = image_test.resize((input_size,input_size))
-        # pred_data.append(np.array(image_test))
-        # pred = np.asarray(pred_data)
-        # final_prediction  = self.loaded_model.predict(pred)
-        # print("Final prediciton =>> ", final_prediction)
+        pred_data = []
+        image_test = mpimg.imread(temp_path) 
+        image_test = Image.fromarray(image_test, 'RGB')
+        image_test = image_test.resize((input_size,input_size))
+        pred_data.append(np.array(image_test))
+        pred = np.asarray(pred_data)
+        final_prediction  = self.loaded_model.predict(pred)
+        print("Final prediciton =>> ", final_prediction)
+        self.lineEdit_2.clear()
+        self.lineEdit_4.clear()
+        self.lineEdit_5.clear()
+        self.lineEdit_6.clear()
+        self.lineEdit_7.clear()
+        self.lineEdit.clear()
+        self.comboBox.setCurrentIndex(0)
+
 
 
 
