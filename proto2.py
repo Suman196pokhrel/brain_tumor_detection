@@ -15,7 +15,7 @@ from skimage.transform import resize
 from PIL import Image
 import matplotlib.image as mpimg
 
-
+import resource_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -122,13 +122,12 @@ class Ui_MainWindow(object):
         self.pushButton = QtWidgets.QPushButton(self.frame_7)
         self.pushButton.setMinimumSize(QtCore.QSize(40, 25))
         self.pushButton.setMaximumSize(QtCore.QSize(40, 40))
-        self.pushButton.setStyleSheet("image: url(:/newPrefix/fileicon.png);")
+        self.pushButton.setStyleSheet("image: url('./resource_rc/fileicon.png');")
         self.pushButton.setText("")
         self.pushButton.setIconSize(QtCore.QSize(30, 30))
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayout_2.addWidget(self.pushButton)
-        self.pushButton.setIcon(QtGui.QIcon(
-            r'E:\Final_year_project\btd_final_project\uIModule\fileicon.png'))
+        # self.pushButton.setIcon(QtGui.QIcon('./resource_rc/fileicon.png'))
         self.pushButton.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
 
         self.verticalLayout_3.addWidget(self.frame_7)
@@ -499,6 +498,18 @@ class Ui_MainWindow(object):
         self.tab_3.setObjectName("tab_3")
         self.tabWidget.addTab(self.tab_3, "")
         self.verticalLayout.addWidget(self.tabWidget)
+
+        self.verticalLayout_16 = QtWidgets.QVBoxLayout(self.tab_3)
+        self.verticalLayout_16.setContentsMargins(4, 4, 4, 4)
+        self.verticalLayout_16.setObjectName("verticalLayout_16")
+        self.label_7 = QtWidgets.QLabel(self.tab_3)
+        self.label_7.setText("")
+        self.label_7.setPixmap(QtGui.QPixmap("./resource_rc/download.png"))
+        self.label_7.setScaledContents(True)
+        self.label_7.setObjectName("label_7")
+        self.verticalLayout_16.addWidget(self.label_7)
+        self.tabWidget.addTab(self.tab_3, "")
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 860, 21))
@@ -873,6 +884,7 @@ class Ui_MainWindow(object):
         self.lineEdit_7.clear()
         self.lineEdit.clear()
         self.comboBox.setCurrentIndex(0)
+
 
 
 
