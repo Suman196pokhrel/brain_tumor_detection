@@ -11,7 +11,7 @@ from PyQt5.QtGui import QCursor, QFont, QPixmap
 import numpy as np
 import tensorflow as tf
 # import cv2 
-from skimage.transform import resize
+# from skimage.transform import resize
 from PIL import Image
 import matplotlib.image as mpimg
 

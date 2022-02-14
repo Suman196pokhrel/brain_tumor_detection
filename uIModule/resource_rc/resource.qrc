@@ -3,6 +3,8 @@
     <file>contact-form.png</file>
     <file>fileicon.png</file>
     <file>ff.jpg</file>
+    <file>inDanger.png</file>
+    <file>safe.png</file>
     <file>download.png</file>
   </qresource>
 </RCC>
