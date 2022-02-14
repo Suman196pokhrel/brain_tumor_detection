@@ -220,13 +220,26 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.frame_10)
         self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
-        self.radioButton = QtWidgets.QRadioButton(self.frame_10)
-        self.radioButton.setMinimumSize(QtCore.QSize(320, 20))
-        self.radioButton.setStyleSheet("background-color: rgb(24, 141, 13);\n"
-                                       "color: rgb(255, 255, 255);\n"
-                                       "padding:10px;")
-        self.radioButton.setObjectName("radioButton")
-        self.horizontalLayout_5.addWidget(self.radioButton)
+        
+        
+        
+        # self.radioButton = QtWidgets.QRadioButton(self.frame_10)
+        # self.radioButton.setMinimumSize(QtCore.QSize(320, 20))
+        # self.radioButton.setStyleSheet("background-color: rgb(24, 141, 13);\n"
+        #                                "color: rgb(255, 255, 255);\n"
+        #                                "padding:10px;")
+        # self.radioButton.setObjectName("radioButton")
+        # self.horizontalLayout_5.addWidget(self.radioButton)
+        self.pushButton_22 = QtWidgets.QPushButton(self.frame_10)
+        self.pushButton_22.setMinimumSize(QtCore.QSize(0, 30))
+        self.pushButton_22.setStyleSheet("background-color: rgb(19, 141, 255);\n"
+                                        "color: rgb(255, 255, 255);")
+        self.pushButton_22.setObjectName("pushButton_22")
+        self.pushButton_22.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
+        self.horizontalLayout_5.addWidget(self.pushButton_22)
+        
+        
+        
         self.pushButton_2 = QtWidgets.QPushButton(self.frame_10)
         self.pushButton_2.setMinimumSize(QtCore.QSize(0, 30))
         self.pushButton_2.setStyleSheet("background-color: rgb(19, 141, 255);\n"
@@ -234,6 +247,8 @@ class Ui_MainWindow(object):
         self.pushButton_2.setObjectName("pushButton_2")
         self.pushButton_2.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
         self.horizontalLayout_5.addWidget(self.pushButton_2)
+        
+        
         self.verticalLayout_4.addWidget(self.frame_10)
         self.horizontalLayout.addWidget(self.frame_4)
         self.verticalLayout_2.addWidget(self.frame)
@@ -290,6 +305,49 @@ class Ui_MainWindow(object):
         self.frame_13.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_13.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_13.setObjectName("frame_13")
+
+        self.verticalLayout_17 = QtWidgets.QVBoxLayout(self.frame_13)
+        self.verticalLayout_17.setObjectName("verticalLayout_17")
+        self.frame_23 = QtWidgets.QFrame(self.frame_13)
+        self.frame_23.setMaximumSize(QtCore.QSize(16777215, 40))
+        self.frame_23.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_23.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_23.setObjectName("frame_23")
+        self.verticalLayout_18 = QtWidgets.QVBoxLayout(self.frame_23)
+        self.verticalLayout_18.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_18.setSpacing(0)
+        self.verticalLayout_18.setObjectName("verticalLayout_18")
+        self.label_8 = QtWidgets.QLabel(self.frame_23)
+        self.label_8.setObjectName("label_8")
+        self.verticalLayout_18.addWidget(self.label_8)
+        self.verticalLayout_17.addWidget(self.frame_23)
+        self.frame_24 = QtWidgets.QFrame(self.frame_13)
+        self.frame_24.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_24.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_24.setObjectName("frame_24")
+        self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.frame_24)
+        self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_8.setSpacing(3)
+        self.horizontalLayout_8.setObjectName("horizontalLayout_8")
+        self.label_9 = QtWidgets.QLabel(self.frame_24)
+        self.label_9.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.label_9.setText("")
+
+        # Setting the safe/Danger Image 
+        # self.label_9.setPixmap(QtGui.QPixmap("./resource_rc/safe.png"))
+        
+        
+        
+        self.label_9.setScaledContents(True)
+        self.label_9.setObjectName("label_9")
+        self.horizontalLayout_8.addWidget(self.label_9)
+        self.label_10 = QtWidgets.QLabel(self.frame_24)
+        self.label_10.setObjectName("label_10")
+        self.horizontalLayout_8.addWidget(self.label_10)
+        self.verticalLayout_17.addWidget(self.frame_24)
+
+
+
         self.verticalLayout_5.addWidget(self.frame_13)
         self.verticalLayout_2.addWidget(self.frame_2)
         self.tabWidget.addTab(self.tab, "")
@@ -556,8 +614,8 @@ class Ui_MainWindow(object):
             _translate("MainWindow", "Contact number"))
         self.lineEdit_7.setPlaceholderText(
             _translate("MainWindow", "Address"))
-        self.radioButton.setText(_translate(
-            "MainWindow", "Add patients data to Dataset"))
+        self.pushButton_22.setText(_translate(
+            "MainWindow", "Clear"))
         self.pushButton_2.setText(_translate("MainWindow", "Start Detection"))
         self.label_3.setText(_translate(
             "MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600;\">Analysis Results</span></p></body></html>"))
@@ -593,6 +651,13 @@ class Ui_MainWindow(object):
         self.menuhelp.setTitle(_translate("MainWindow", "help"))
         self.menuAbout.setTitle(_translate("MainWindow", "About"))
 
+        self.label_8.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; color:#26a269;\">Analysis reports</span></p></body></html>"))
+
+        # Setting the safe/ Danger test Results text 
+        # self.label_10.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:48pt; font-weight:600; color:#26a269;\">No tumour found</span></p></body></html>"))
+
+
+
         # Setting up the font sizes
         self.lineEdit_2.setFont(QFont("Timers", 12,  QFont.Bold))
         self.lineEdit_4.setFont(QFont("Timers", 12,  QFont.Bold))
@@ -620,6 +685,9 @@ class Ui_MainWindow(object):
 
         # Clear lin-edit features
         self.pushButton_5.clicked.connect(self.clear_lineEdits)
+
+        # Clearning linEdits for input form First tab 
+        self.pushButton_22.clicked.connect(self.clear_lineEdits)
 
         # Loading machine learning models
         self.loaded_model = tf.keras.models.load_model("./cnn_models/BrainTumorDetection_model_3.h5")
@@ -686,6 +754,18 @@ class Ui_MainWindow(object):
         self.lineEdit_3.clear()
         self.comboBox_2.setEnabled(False)
         self.lineEdit.clear()
+
+        self.lineEdit_2.clear()
+        self.lineEdit_4.clear()
+        self.lineEdit_5.clear()
+        self.lineEdit_6.clear()
+        self.lineEdit_7.clear()
+        self.lineEdit.clear()
+        self.comboBox.setCurrentIndex(0)
+
+        self.label_9.setPixmap(QtGui.QPixmap(""))
+        self.label_10.setText(QtCore.QCoreApplication.translate("MainWindow", f"<html><head/><body></body></html>"))
+
 
     def on_id_search(self):
         connection1 = connector_01.CustomConnector()
@@ -877,13 +957,29 @@ class Ui_MainWindow(object):
         pred = np.asarray(pred_data)
         final_prediction  = self.loaded_model.predict(pred)
         print("Final prediciton =>> ", final_prediction)
-        self.lineEdit_2.clear()
-        self.lineEdit_4.clear()
-        self.lineEdit_5.clear()
-        self.lineEdit_6.clear()
-        self.lineEdit_7.clear()
-        self.lineEdit.clear()
-        self.comboBox.setCurrentIndex(0)
+
+        if(final_prediction[0][0]==0):
+            # setting up the logo 
+            self.label_9.setPixmap(QtGui.QPixmap("./resource_rc/safe.png"))
+
+        # Setting up the Text 
+            self.label_10.setText(QtCore.QCoreApplication.translate("MainWindow", f"<html><head/><body><p align=\"center\"><span style=\" font-size:48pt; font-weight:600; color:#26a269;\">No tumour found</span></p><p>{self.lineEdit_2}</p></body></html>"))
+        else:
+            self.label_9.setPixmap(QtGui.QPixmap("./resource_rc/inDanger.png"))
+            self.label_10.setText(QtCore.QCoreApplication.translate("MainWindow", f"<html><head/><body><p align=\"center\"><span style=\" font-size:48pt; font-weight:600; color:#E82900;\">Tumour found</span></p><p>{self.lineEdit_2}</p></body></html>"))
+
+
+        
+
+
+
+        # self.lineEdit_2.clear()
+        # self.lineEdit_4.clear()
+        # self.lineEdit_5.clear()
+        # self.lineEdit_6.clear()
+        # self.lineEdit_7.clear()
+        # self.lineEdit.clear()
+        # self.comboBox.setCurrentIndex(0)
 
 
 
