@@ -969,19 +969,6 @@ class Ui_MainWindow(object):
             self.label_10.setText(QtCore.QCoreApplication.translate("MainWindow", f"<html><head/><body><p align=\"center\"><span style=\" font-size:48pt; font-weight:600; color:#E82900;\">Tumour found</span></p><p>{self.lineEdit_2}</p></body></html>"))
 
 
-        
-
-
-
-        # self.lineEdit_2.clear()
-        # self.lineEdit_4.clear()
-        # self.lineEdit_5.clear()
-        # self.lineEdit_6.clear()
-        # self.lineEdit_7.clear()
-        # self.lineEdit.clear()
-        # self.comboBox.setCurrentIndex(0)
-
-
 
 
 
