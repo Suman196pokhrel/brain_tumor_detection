@@ -935,19 +935,8 @@ class Ui_MainWindow(object):
 
     def predict_final(self):
         input_size = 64
-        # if(selff.lineEdit.text == ""):
-        #     selff.messageBox("empty")
-        
-        # if(self.lineEdit.text() != "" and not(self.areFieldsEmpty())):
-        #     self.add_data()
-        #     print(self.lineEdit.text)
-
-        # else:
-        #     print("Something is messed up in the code")
         self.add_data()
         temp_path = self.lineEdit.text()
-        print("TEMP pATH ==>>> ", temp_path)
-        print("Model loaded")
         
         pred_data = []
         image_test = mpimg.imread(temp_path) 
@@ -956,7 +945,7 @@ class Ui_MainWindow(object):
         pred_data.append(np.array(image_test))
         pred = np.asarray(pred_data)
         final_prediction  = self.loaded_model.predict(pred)
-        print("Final prediciton =>> ", final_prediction)
+        
 
         if(final_prediction[0][0]==0):
             # setting up the logo 
